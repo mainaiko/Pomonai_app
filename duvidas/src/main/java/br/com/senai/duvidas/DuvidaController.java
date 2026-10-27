@@ -1,4 +1,11 @@
 package br.com.senai.duvidas;
+
+// Se não colocar a anottation é uma classe comum.
+// Preciso importar uma anottation de Controller.
+// Rota de um sistema web
+// API Web - RESTFull
+//import org.springframework.stereotype.Controller;
+//@Controller
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @RestController 
 @RequestMapping("/duvida")
@@ -25,8 +34,10 @@ public class DuvidaController {
     } 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody DadosCadastroDuvida dados){
-        repository.save(new Duvida(dados));
+    public ResponseEntity<Duvida> cadastrar(@RequestBody DadosCadastroDuvida dados){
+        Duvida duvida = new Duvida(dados);
+        repository.save(duvida);
+        return ResponseEntity.ok(duvida);
     }
 }
 

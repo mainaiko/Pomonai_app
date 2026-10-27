@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>FAQ - Frequently Asked Questions</h1>
+
+    <div class ="faq">
+        <details th each="d: ${duvidas}">
+            <summary th:text="${d.texto}"></summary>
+            <p class="info">
+                enviada em:<span th:text="${#temporals.format(d.dataHora, 'dd/MM/yyyy HH:mm')}"></span>
+            </p>
+        </details>
+    </div>"
+
+</body>
+</html>
